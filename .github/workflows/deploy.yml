@@ -13,6 +13,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    environment: CF_API_TOKEN
     outputs:
       should_deploy: ${{ steps.decide.outputs.should_deploy }}
     steps:
@@ -32,6 +33,7 @@ jobs:
     if: needs.check.outputs.should_deploy == 'true'
     runs-on: ubuntu-latest
     name: Deploy
+    environment: CF_API_TOKEN
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
